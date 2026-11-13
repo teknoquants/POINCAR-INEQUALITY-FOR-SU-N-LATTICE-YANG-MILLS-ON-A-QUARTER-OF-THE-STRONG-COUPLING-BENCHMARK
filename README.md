@@ -3,7 +3,7 @@
 Companion code to the white paper by R. Cooperman and A.E. Petrunina V.V. (XISOSIS, Vienna, 13 November 2026).
 Released under the MIT License (see `LICENSE`; the licence is also reproduced at the top of every script).
 
-GitHub: [GITHUB REPOSITORY URL — placeholder] · DOI: [DOI — placeholder]
+GitHub: https://github.com/teknoquants/POINCAR-INEQUALITY-FOR-SU-N-LATTICE-YANG-MILLS-ON-A-QUARTER-OF-THE-STRONG-COUPLING-BENCHMARK · DOI: https://doi.org/10.5281/zenodo.24203367
 
 ## Run
 
