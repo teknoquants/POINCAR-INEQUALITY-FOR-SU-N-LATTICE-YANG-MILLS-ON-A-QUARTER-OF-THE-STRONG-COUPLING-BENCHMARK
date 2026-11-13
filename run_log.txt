@@ -1,0 +1,104 @@
+
+=== Definitions 1-7 ===
+  [PASS] D1 four distinct edges per plaquette, 2(d-1) plaquettes per edge; Ric = N/2  (3x3: 18 edges; 4x4: 32 edges; 3x3x3: 81 edges; 4x4x4: 192 edges; 3x3x3x3: 324 edges)
+  [PASS] D2 K_SZZ = N/2 - 8 N beta (d-1) > 0 iff beta < 1/(16(d-1)); d = 4 gives 1/48
+  [PASS] D4 N/2 - 2 sup Hess log z_t (sampled on SU(2) matrices) agrees with the profile of the flow code of [1]  (beta=0.1, t=0.0: 0.8000 vs 0.8000; beta=0.1, t=0.2: 0.8478 vs 0.8478; beta=0.1, t=1.0: 0.9541 vs 0.9541)
+  [PASS] D6 p_t > 0, central, unit integral; eps1, eps2 finite and decreasing to 0; eps2(8) = 2 e^{-12}(1 + o(1))  (eps(1) = 0.746, 0.941; eps2(8)/e^-12 = 2.0001)
+  [PASS] D7 nu_{U,t} is a probability measure; its mean is Q_t at U; nu_{1,t} -> Wilson measure
+  -> Definitions: 5/5 checks passed
+
+=== Lemma 1 and Corollary 2 - Hessian of the Wilson action; the two initial tensors ===
+  [PASS] (a) |Tr(V A^2)| <= |A|^2 and |Tr(V1 A V2 B)| <= |A||B|  (largest ratio 0.9898)
+  [PASS] (b) exact SU(2) lattice Hessian agrees with finite differences  (41.82352282 vs 41.82352282)
+  [PASS] (c) |Hess W(h,h)| <= 8 N beta (d-1) |h|^2  (4x4: spectrum in [-2.82, 2.63] within +-4; 3x3x3: spectrum in [-3.69, 3.41] within +-8; 4x4x4: spectrum in [-3.66, 3.54] within +-8; SU(3) 3x3: max |Hess W|/(a|h|^2) = 0.029; 4x4 at all-minus-one: 4.000000 = bound 4 (sharp in d = 2))
+  [PASS] (d) mixed derivative |d_r d_s W(U e^{sh} Y e^{rk})| <= a |h||k|  (max ratio 0.032)
+  [PASS] (e) Ric - Hess W >= K_SZZ, Ric - 2 Hess W >= N/2 - 16 N beta (d-1); k(0) > 0 iff beta < beta_0/2 (1/96 in d = 4)
+  -> Lemma 1 / Corollary 2: 5/5 checks passed
+
+=== Proposition 3 - the profile starts negative on the target interval ===
+  [PASS] (a) odd plaquette labelling exists on even tori and not on odd ones  (3x3: no labelling; 3x3x3: no labelling)
+  [PASS] (b) U0 has every plaquette holonomy -1 (SU(2), SU(4)); -1 in SU(N) for even N
+  [PASS] (c) ReTr(-e^X) = -N - (1/2)Tr(X^2) + O(|X|^3)  (max |remainder|/|X|^3 = 0.000)
+  [PASS] (d) Hess W(A,A) = N beta sum_p |(d_1 A)_p|^2 at U0 (SU(2), SU(4))  (max rel error 3.5e-10)
+  [PASS] (e) d_1 d_0 = 0; staggered coclosed cochains are horizontal eigenvectors; lambda_max = 4d  (d=2: lambda_max = 8.000000; d=3: lambda_max = 12.000000; d=4: lambda_max = 16.000000)
+  [PASS] (f) Hess W(h,h) = 4 d N beta on a unit horizontal vector at U0  (d=2: Hess W(h,h)/beta = 16.000000 = 4dN; d=3: Hess W(h,h)/beta = 24.000000 = 4dN; d=4: Hess W(h,h)/beta = 32.000000 = 4dN; SU(4), d=2: 32.000000 = 4dN = 32)
+  [PASS] (g) d = 2: 8Nd = 16N(d-1); d = 4 and beta >= 1/48: k_beta(0) <= N/2 - 32 N beta <= -N/6
+  -> Proposition 3: 7/7 checks passed
+
+=== Lemma 4 - from a profile to a constant ===
+  [PASS] (a) closed form of the two integrals; A = 0 gives 2T + 1/r  (max rel error 1.8e-11)
+  [PASS] (b) the extremal profile attains the bound; 500 admissible profiles stay below it  (max C/bound 0.9557)
+  [PASS] (c) a smaller profile gives a larger constant
+  [PASS] (d) r <= N/2: the optimal profile never exceeds N/2 = 1 (one loop, seven actions)  (free: max 1.0000; 1+0.6x: max 1.0000; 1-0.9x: max 1.0000 ...)
+  [PASS] (e) A >= N/6, r <= N/2  =>  bound >= (2/N) e^{NT/3}
+  [PASS] (f) the criterion's constant bounds the optimal constant (one loop, Wilson)  (beta=0.1: optimal 0.6649 <= 1.1272; beta=0.4: optimal 0.6394 <= 1.7434; beta=1.0: optimal 0.5271 <= 6.5523)
+  -> Lemma 4: 6/6 checks passed
+
+=== Lemma 5 and Proposition 6 - two Hessian formulas; the term responsible ===
+  [PASS] (I) Hess log z_t = E_nu[Hess W(h~,h~)] + Var_nu(f_h)  (max rel error 1.4e-11)
+  [PASS] (II) Hess log z_t = E_nu[sum m_e] + Var_nu(sum ell_e)  (max rel error 7.7e-11)
+  [PASS] (bounds) |ell| <= eps1|h|, |m| <= eps2|h|^2, |grad ell| <= (eps2 + eps1/sqrt2)|h|  (max |grad ell|/(eps2 + eps1/sqrt2) = 0.787)
+  [PASS] (identity) d_r d_s phi(e^{-sh} Y e^{rk}) = -Hess phi(L_k, L_h') + (1/2) L_[k,h'] phi; |[k,h']| <= sqrt2|k||h'|  (max residual 1.3e-07)
+  [PASS] (Prop 6, means) |E_nu Hess W| <= a|h|^2 and |E_nu m| <= eps2|h|^2
+  [PASS] (Prop 6) |grad(l_1 + l_2)|^2 = |grad l_1|^2 + |grad l_2|^2 for observables on different links; crude bound Var(sum ell_e) <= (sum eps1|h_e|)^2  (max excess of a directional derivative over the norm: 4.6e-11)
+  -> Lemma 5 / Proposition 6: 6/6 checks passed
+
+=== Proposition 7 - large-time inequality below the benchmark ===
+  [PASS] (a) Ric + Hess Phi >= K_SZZ - eps2(t) for the fluctuation measure  (beta=0.1, t=1.5: min 0.6445 >= 0.4976; beta=0.2, t=2.0: min 0.5716 >= 0.4811; beta=0.3, t=2.5: min 0.3901 >= 0.3487)
+  [PASS] (b) Poincare inequality for nu_{U,t} with constant 1/(K_SZZ - eps2)  (max Var/(constant x energy) = 0.215)
+  [PASS] (c) Hess log z_t <= eps2 + (eps2 + eps1/sqrt2)^2/(K - eps2) (one loop, exact Hessians)  (beta=0.1, t=2.0: sup 0.0101 <= 0.1898; beta=0.1, t=3.0: sup 0.0022 <= 0.0258; beta=0.3, t=2.0: sup 0.0297 <= 0.2908 ...)
+  [PASS] (d) table of T(beta), SU(2), d = 4  (1/200: 1.91 (1.9); 1/96: 2.00 (1.99); 1/64: 2.19 (2.18); 1/56: 2.37 (2.37); 1/50: 2.90 (2.9); 1/49: 3.23 (3.24); 1/48.1: 4.60 (4.6); 1/48.01: 6.12 (6.12))
+  [PASS] (e) eps2(t) e^{3t/2} -> 2; T(beta) ~ (2/3) ln(1/K_SZZ)  (eps2(10) e^15 = 2.00018; dT/d ln(1/K) = 0.661)
+  -> Proposition 7: 5/5 checks passed
+
+=== Lemma 8, Theorem 9, Corollary 10 - the closed inequality and the quarter of the benchmark ===
+  [PASS] (a) Q_t(F^2) - (Q_t F)^2 = 2 int_0^t Q_{s,t}|grad Q_{0,s}F|^2 ds  (max rel error 1.1e-04)
+  [PASS] (b) |grad Q_{0,s}F|^2 <= e^{-2 Lambda^(s)} Q_{0,s}|grad F|^2 (full-Hessian profile)  (max excess 0.0e+00)
+  [PASS] (c) Lemma 8: Var_nu(g) <= c(t) E_nu|grad g|^2 for random non-class g  (max ratio 0.687)
+  [PASS] (d) true profile k^(t) >= G(t, c(t)) at every scale  (a=0.1: min(k^ - G) = -1.0e-07; C true 1.127 <= closed 1.265; a=0.2: min(k^ - G) = -1.0e-07; C true 1.286 <= closed 1.784; a=0.4: min(k^ - G) = -1.0e-07; C true 1.743 <= closed 14.866)
+  [PASS] (e) G(t, c) is decreasing in c
+  [PASS] (f) comparison: Lambda^ >= Lambda_, k^ >= Lambda_', and the true constant is below the closed one
+  [PASS] (g) symbolic: (Lambda')^2 - 4a^2 e^{-2 Lambda} is a first integral
+  [PASS] (h) first-entry equation: Lambda_1' >= r0 for a < N/8; breakdown for a >= N/8  (N=2, a=0.30N/8: min 0.8367 >= r0 0.8367; N=2, a=0.70N/8: min 0.5477 >= r0 0.5477; N=2, a=0.95N/8: min 0.2235 >= r0 0.2236 ...)
+  [PASS] (i) r0 = (N/2)(1 - 64 beta(d-1))^{1/2}; endpoint beta_0/4 (1/192 in d = 4); benchmark constant smaller
+  [PASS] (j) one loop: the true profile stays above r0 when a < N/8  (a=0.05: min k^ = 0.9000 >= r0 = 0.8944; a=0.15: min k^ = 0.7000 >= r0 = 0.6325; a=0.24: min k^ = 0.5200 >= r0 = 0.2000)
+  -> Lemma 8 / Theorem 9 / Corollary 10: 10/10 checks passed
+
+=== Remark 11 - numerical continuation for SU(2), d = 4 ===
+  [PASS] (a) heat-flow entries only: closes iff 1/beta > 109.5  (109.47, 109.51)
+  [PASS] (b) with Proposition 7 as a third entry: closes iff 1/beta > 85.8  (85.70, 85.80)
+  [PASS] (c) table entries A, T, C and the benchmark column  (1/192: A=0.00 T=0.00 C=2.283 (benchmark 1.33); 1/150: A=0.16 T=1.74 C=3.841 (benchmark 1.47); 1/120: A=1.16 T=1.98 C=14.88 (benchmark 1.67); 1/110: A=2.24 T=2.99 C=498.9 (benchmark 1.77); 1/100: A=3.89 T=1.76 C=91.22 (benchmark 1.92); 1/90: A=16.09 T=1.79 C=6597 (benchmark 2.14))
+  [PASS] (d) closure stops at 25%, ~44% and ~56% of the benchmark endpoint 1/48  (25.0%, 43.8%, 55.9%)
+  -> Remark 11: 4/4 checks passed
+
+=== Proposition 12 - why the method stops ===
+  [PASS] (i) k >= -A on [0,t]  =>  c(t) <= (e^{2At} - 1)/A, equality for k = -A
+  [PASS] (i') second entry -> 0 for A < 3/2 and diverges for A > 3/2; eps1, eps2 decay at rate 3/2  (A=1.2: 3.65e-01 -> 3.31e-02; A=1.8: 3.25e+02 -> 3.59e+03; rates 1.5000, 1.5002)
+  [PASS] (ii) Proposition 7 requires K_SZZ > eps2(t), possible only for beta < beta_0
+  [PASS] (iii) variance and energy under nu_{U,t} converge to the Wilson values as t -> infinity  (max rel difference at t = 25: 7.5e-15)
+  -> Proposition 12: 4/4 checks passed
+
+=== Problem R2 - the computations behind the open question ===
+  [PASS] (a) exact lattice Hessian agrees with finite differences  (max rel error 8.0e-10)
+  [PASS] (b) top eigenvalue at all-minus-one = 2d (i.e. 4dN beta for W), below 4(d-1) for d >= 3  (d=2: 4.000000 (bound 4); d=3: 6.000000 (bound 8); d=4: 8.000000 (bound 12))
+  [PASS] (c) sup Hess W = 4dN beta would give the threshold 1/(8d) (1/32 in d = 4, > 1/48)
+  [PASS] (d) search: no configuration above 2d found (observation only, not evidence of a global bound)  (4x4: random start 2.56 -> 3.43 (86% of 2d); from all-minus-one 4.00; 4x4x4: random start 3.37 -> 4.08 (68% of 2d); from all-minus-one 6.00)
+  -> Problem R2: 4/4 checks passed
+
+=== Summary ===
+  PASS  Definitions 1-7  (4.3 s)
+  PASS  Lemma 1 and Corollary 2 - Hessian of the Wilson action; the two initial tensors  (0.5 s)
+  PASS  Proposition 3 - the profile starts negative on the target interval  (0.7 s)
+  PASS  Lemma 4 - from a profile to a constant  (16.2 s)
+  PASS  Lemma 5 and Proposition 6 - two Hessian formulas; the term responsible  (25.0 s)
+  PASS  Proposition 7 - large-time inequality below the benchmark  (47.6 s)
+  PASS  Lemma 8, Theorem 9, Corollary 10 - the closed inequality and the quarter of the benchmark  (42.6 s)
+  PASS  Remark 11 - numerical continuation for SU(2), d = 4  (30.1 s)
+  PASS  Proposition 12 - why the method stops  (8.4 s)
+  PASS  Problem R2 - the computations behind the open question  (6.7 s)
+
+Not validated: any inequality for beta >= 1/(16(d-1)) (none is claimed); Problems R1-R4; the uniformity in L of
+statements about lattices, which is proved and not testable by computation. Inequalities that involve the true
+curvature profile are tested on one SU(2) loop, where it can be computed; lattice statements are tested on
+periodic lattices up to 4^4 for SU(2) and small lattices for SU(3) and SU(4). The endpoints 1/109.5 and 1/85.8
+and the table of Remark 11 are numerical. Passing these checks supports the proofs; it does not replace them.
